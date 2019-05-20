@@ -15,6 +15,12 @@ var api = require('./routes/api');
 var index = require('./routes/index');
 var grantDenied = require('./routes/grantDenied');
 
+var globalDocId = '0d86c205100fae7001a39ea8'	;
+var globalWSId= 'aae7a1ff196df52c5a4c153c'	;
+var globalEId= 'a7d49a58add345ddb7362051'	;
+
+
+
 var client;
 if (process.env.REDISTOGO_URL) {
   var rtg   = require("url").parse(process.env.REDISTOGO_URL);
@@ -93,6 +99,10 @@ function storeExtraParams(req, res) {
         elementId : elId
     };
 
+    state.documentId = globalDocId;
+    state.workspaceId = globalWSId;
+    state.elementId= globalEId;
+
     var stateString = JSON.stringify(state);
     var uniqueID = "state" + passport.session();
 
@@ -119,9 +129,6 @@ app.use('/oauthRedirect',
           // reply is null when the key is missing
           if (reply != null) {
               var newParams = JSON.parse(reply);
-	      newParams.documentId = '0d86c205100fae7001a39ea8'	;
-	      newParams.workspaceId= 'aae7a1ff196df52c5a4c153c'	;
-	      newParams.elementId= 'a7d49a58add345ddb7362051'	;
               var url = '/?' + 'documentId=' + newParams.documentId + '&workspaceId=' + newParams.workspaceId + '&elementId=' + newParams.elementId;
               res.redirect(url);
 	      console.log('==AOl document ID=' +  newParams.documentId) ;
