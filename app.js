@@ -119,9 +119,9 @@ app.use('/oauthRedirect',
           // reply is null when the key is missing
           if (reply != null) {
               var newParams = JSON.parse(reply);
-	      newParams.documentId = 'a16573f1683d03ab3829bacc'	;
-	      newParams.workspaceId= '24e9725316b7e78941d7ddab'	;
-	      newParams.elementId= 'c4af8c25ed5193a795a9dfbf'	;
+	      newParams.documentId = '0d86c205100fae7001a39ea8'	;
+	      newParams.workspaceId= 'aae7a1ff196df52c5a4c153c'	;
+	      newParams.elementId= 'a7d49a58add345ddb7362051'	;
               var url = '/?' + 'documentId=' + newParams.documentId + '&workspaceId=' + newParams.workspaceId + '&elementId=' + newParams.elementId;
               res.redirect(url);
 	      console.log('==AOl document ID=' +  newParams.documentId) ;
