@@ -99,6 +99,8 @@ function storeExtraParams(req, res) {
         elementId : elId
     };
 
+    console.log('==AOl document ID=' +  state.documentId) ;
+
     state.documentId = globalDocId;
     state.workspaceId = globalWSId;
     state.elementId= globalEId;
@@ -131,7 +133,6 @@ app.use('/oauthRedirect',
               var newParams = JSON.parse(reply);
               var url = '/?' + 'documentId=' + newParams.documentId + '&workspaceId=' + newParams.workspaceId + '&elementId=' + newParams.elementId;
               res.redirect(url);
-	      console.log('==AOl document ID=' +  newParams.documentId) ;
           }
       });
     });
