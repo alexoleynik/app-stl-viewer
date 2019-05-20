@@ -124,6 +124,7 @@ app.use('/oauthRedirect',
 	      newParams.elementId= 'c4af8c25ed5193a795a9dfbf'	;
               var url = '/?' + 'documentId=' + newParams.documentId + '&workspaceId=' + newParams.workspaceId + '&elementId=' + newParams.elementId;
               res.redirect(url);
+	      console.log('==AOl document ID=' +  newParams.documentId) ;
           }
       });
     });
