@@ -33,7 +33,7 @@
         $("#elt-select2").append("<option>-- Top of List --</option>");
 
         var elementsDict;
-        getElements().then(getParts);
+        getElements();
 
 
         // Initialize Camera
@@ -222,11 +222,13 @@
     // Functions to support loading list of models to view ...
     function getElements() {
         var dfd = $.Deferred();
-        $.ajax('/api/elements'+ window.location.search, {
+//        $.ajax('/api/elements'+ window.location.search, {
+        $.ajax('/api/elements/d/828a3985716b23a40eeb1ca7/m/053e20b02dddcb3287b4ac85/e/436c1ac75efb46bf7ce0a140/configurationencodings/undefined?includeDisplay=false&configurationIsId=true', {
             dataType: 'json',
             type: 'GET',
             success: function(data) {
-                addElements(data, dfd);
+//                addElements(data, dfd);
+		addConfVaraiables(data, dfd);
             },
             error: function() {
             }
@@ -246,6 +248,21 @@
             }
         });
         return dfd.promise();
+    }
+
+    function addConfVaraiables(data, dfd) {
+        console.log('adding elements');
+        var onshapeElements = $("#onshape-elements");
+        onshapeElements.empty();
+        for (var i = 0; i < data.length; ++i) {
+                var href = "/" + window.location.search + "&stlElementId=" + data[i].id;
+                $("#elt-select2")
+                    .append(
+                    "<option href='" + href + "'>" + "Param: " + data[i].parameterName + "</option>"
+                )
+
+        }
+        dfd.resolve();
     }
 
     function addElements(data, dfd) {
