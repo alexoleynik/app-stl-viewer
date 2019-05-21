@@ -15,12 +15,6 @@ var api = require('./routes/api');
 var index = require('./routes/index');
 var grantDenied = require('./routes/grantDenied');
 
-var globalDocId = '0d86c205100fae7001a39ea8'	;
-var globalWSId= 'aae7a1ff196df52c5a4c153c'	;
-var globalEId= 'a7d49a58add345ddb7362051'	;
-
-
-
 var client;
 if (process.env.REDISTOGO_URL) {
   var rtg   = require("url").parse(process.env.REDISTOGO_URL);
